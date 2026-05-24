@@ -1,0 +1,203 @@
+https://www.youtube.com/watch?v=Hhseq7FfUC4
+https://www.youtube.com/watch?v=HFrsSqTeuhk
+----
+
+git checkout -b New_branch #create new branch and checkout the same 
+
+git checkout -m branch 'message'
+
+
+#add - move changes from working directory to staging
+git add -A #stages all changes
+git add . # all changes and new files , not deletion
+
+git pull orgin develop ===>origin/develop to "local develop" branch
+ #pulls the master branch from the remote called origin into your current branch. It only affects your current branch, not your local master branch. Your local master branch is irrelevant in this.
+
+
+-------------
+
+git status 
+
+#apply the changes to staging area
+git add *.json 
+git add 1.json 2.json 
+git add -A #stages all changes
+git add . # all changes and new files , not deletion
+
+
+git commit -m "meaning full msg" (-m means for message)
+
+#staging and commiting in one commend with -a -m or -am option
+git commit -am "meaning full msg" (-a all changes)
+
+git ls-files # files in staging area
+
+git mv f1.json f2.json #rename 
+
+git rm f1.txt # remove the file from both working area and staging area
+git rm -cached f1.txt 
+git rm --cached -r bin/ #remove entire dir -r recursively 
+
+
+git status -s
+?? file1.txt # new file in wroking area
+M(grean) file2.txt # modified and staged
+ M(read) file2.tx #modified in working area and not staged 
+MM file2.txt #first modification staged second modification in working area
+A file1.txt  #new file added to staging area
+
+git diff --staged 
+
+git config --global diff.tool vscode #set the diff tool as microsft vscode 
+git config --global difftool.vscode.cmd "code --wait --diff $local $REMOTE" #run cmd for vscode
+git config --global -e #open .gitignore file in vscode editor
+
+git log --oneline --reverse
+
+git restore f1.txt #chnages from last commit, if not avilable from staging to restore in working dir.
+git restore . #undo all changes
+git --clean -fd #force clean all local changes, removing whole directory
+
+
+git rm file1.js #removed from both working dir and staging (using rm linex cmd only delete from workingdir
+
+#now restore from commit :
+git restore --source=HEAD~1 file1.js
+
+
+**************************
+
+git checkout -b Feature/feature_branch origin/Feature/feature_branch
+ ---pull and create the local feature branch from  the respective origin feature branch
+   and it will automatically track with upstream (i.e respective origin branch)
+
+**origin here denotes the remote branch
+
+once specify the tracking , no need to denote origin , it will auotmatically refers from the respective origin.
+
+i.e git checkout branch
+git pull #pulls from the respective origin
+
+git rebase <source_branch> <target_branch> 
+(i.e. targetbranch always checkout branch, which will be rebased with upward branch commits)
+
+git push # if no tracking git push origin 
+
+-------------------------------
+
+git branch -u origin/bug_aabcd
+
+Or, if local branch bug_aabcd is not the current branch:
+
+git branch -u origin/bug_aabcd bug_aabcd
+
+--------------------------------------
+
+git branch -vv # all branches with tracking information
+
+git config --global 
+
+git log --oneline 
+
+-------------------------------------
+for squashing commits:
+
+git rebase -i HEAD~2
+then in open msg, "squash" the commit
+
+https://gist.github.com/GromNaN/1480288
+-----------------
+
+git rebase --onto new-parent old-parent
+
+-------------
+
+git config --global diff.tool vscode
+git config --global difftool.vscode.cmd "code --wait --diff $LOCAL $REMOTE"
+
+git config --global -e  #this will open .gitconfig #i.e for global settings 
+  [  ]
+  cmd = "code --wait --diff $LOCAL $REMOTE"
+
+git difftool --staged
+git difftool
+
+
+*********************
+
+for merging to feature to develop, raise PR, in the PR request rebase has been set it up for merging.
+
+******************
+#refer this too
+git show HEAD~1
+
+git ls-tree
+
+************
+
+git branch -vv
+
+git checkout -b 'issue101/new-branch'
+
+do changes
+
+git status -s
+
+git diff 
+
+git add .
+
+git add -A 
+
+git diff --stage
+
+git commit -m 'new changes added'
+
+#  git push <remote> <branch>. 
+git push origin main 
+#will push the local main branch
+# to the main branch on the remote named origin
+
+git push #current branch pushed to its(current branch) origin/branch
+
+git push --force(dont) ; --force-with-lease(better)
+
+git fetch --all # pull all branch ; git branch -vv
+git fetch --prune ; better.
+
+git pull ; git fetch + git merge;
+
+git pull origin my-branch # git fetch origin + git merge origin/my-branch; 
+
+git pull --ff-only # fast forward
+
+#Instead of a merge commit, 
+#this "replays" your local commits on top of the new remote changes,
+#keeping the history linear.
+git pull --rebase
+
+git rebase <source_branch> <target_branch> 
+(i.e. targetbranch always checkout branch, which will be rebased with upward branch commits)
+
+git rebase --onto new-parent old-parent ##
+
+-----
+
+git config --global user.name "Govind"
+git config --global user.email govind@example.com
+
+----
+
+git checkout bb
+git reset --hard origin/bb
+git pull
+
+---
+
+git restore file1 #wipe wdir change
+git restore . # all wdir change
+git restore --stage file1 #wipe staged file changes
+
+---
+
